@@ -29,14 +29,11 @@ For receiving the tracking data from the cvtracker, we use `fakesink` with the p
 Then we connect the `handoff` signal to the callback function:
 
     def __tracker_handoff_cb(self, unused_element, buffer, unused_pad, roi_data):
-           video_roi = GstVideo.buffer_get_video_region_of_interest_meta_id(
-               buffer, 0)
+           video_roi = GstVideo.buffer_get_video_region_of_interest_meta_id(buffer, 0)
            if video_roi:
-               roi_data[buffer.pts] = (
-                   video_roi.x, video_roi.y, video_roi.w, video_roi.h)
+               roi_data[buffer.pts] = (video_roi.x, video_roi.y, video_roi.w, video_roi.h)
            else:
                self.log("lost tracker at: %s" + str(buffer.pts / Gst.SECOND))
-
 
 ## Further developments
 There’s more coming!
