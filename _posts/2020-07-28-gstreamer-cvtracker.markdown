@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "cvtracker: OpenCV object tracking plugin"
-date:   2020-07-28 21:57:21 +0530
+date:   2020-08-15 21:57:21 +0530
 tags: gstreamer gsoc
 ---
 I’ve been selected as a student developer at Pitivi for Google Summer of Code 2020. 
@@ -11,28 +11,31 @@ The tracking is done by passing the video clip through a pipeline which includes
 So, the first goal of the project was to implement the tracker plugin in GStreamer.
 
 ## Introducing cvtracker
-This is a plugin which allows the user to select an object in the initial frame of a clip by specifying the object’s bounding box (x, y, width and height coordinates). The element then tracks the object during the subsequent frames of the clip.
+This is a GStreamer plugin which allows the user to select an object in the initial frame of a clip by specifying the object’s bounding box (x, y, width and height coordinates). The element then tracks the object during the subsequent frames of the clip.
+
+This plugin is in the [gst-plugins-bad](https://gstreamer.freedesktop.org/modules/gst-plugins-bad.html) module. It is currently a [merge request](https://gitlab.freedesktop.org/gstreamer/gst-plugins-bad/-/merge_requests/1321).
+
+The plugin can be used by anyone by just installing the module. An example pipeline is given below.
 
 ## Example
-A sample pipeline with cvtracker looks like this
-gst-launch-1.0 filesrc location=t.mp4 ! decodebin ! videoconvert ! cvtracker object-initial-x=175 object-initial-y=40 object-initial-width=300 object-initial-height=150 algorithm=1 ! videoconvert ! xvimagesink
+A sample pipeline with cvtracker looks like this:
+
+    gst-launch-1.0 filesrc location=t.mp4 ! decodebin ! videoconvert ! cvtracker object-initial-x=175 object-initial-y=40 object-initial-width=300 object-initial-height=150 algorithm=1 ! videoconvert ! xvimagesink
 
 Here’s a demo of the pipeline given above: [YouTube](https://youtu.be/K99qTfsvHnc)
 
-The plugin is in gst-plugins-bad, it is currently a merge request.
-
 ## Algorithm
-The tracker incorporates OpenCV’s long term tracker cv::Tracker.
+The tracker incorporates [OpenCV’s long term tracker cv::Tracker](https://docs.opencv.org/3.4/d0/d0a/classcv_1_1Tracker.html).
 
 The available tracking algorithms are:
 
     Boosting         - the Boosting tracker
     CSRT             - the CSRT tracker
-    KCF               - the KCF (Kernelized Correlation Filter) tracker
-    MedianFlow   - the Median Flow tracker
-    MIL                - the MIL tracker
-    MOSSE         - the MOSSE (Minimum Output Sum of Squared Error) tracker
-    TLD               - the TLD (Tracking, learning and detection) tracker
+    KCF              - the KCF (Kernelized Correlation Filter) tracker
+    MedianFlow       - the Median Flow tracker
+    MIL              - the MIL tracker
+    MOSSE            - the MOSSE (Minimum Output Sum of Squared Error) tracker
+    TLD              - the TLD (Tracking, learning and detection) tracker
 
 You might wonder why we missed the GOTURN algorithm. It was skipped due to the added complexity of setting up the models by the user.
 
