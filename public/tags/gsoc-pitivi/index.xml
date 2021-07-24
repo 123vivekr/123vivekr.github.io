@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>gsoc pitivi on Vivek&#39;s blog</title>
+    <link>https://123vivekr.github.io/tags/gsoc-pitivi/</link>
+    <description>Recent content in gsoc pitivi on Vivek&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>This work is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License.</copyright>
+    <lastBuildDate>Sat, 29 Aug 2020 10:36:21 +0530</lastBuildDate><atom:link href="https://123vivekr.github.io/tags/gsoc-pitivi/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>GSoC 2020: Pitivi: Work Product</title>
+      <link>https://123vivekr.github.io/posts/2020-08-29-pitivi-gsoc-work-product/</link>
+      <pubDate>Sat, 29 Aug 2020 10:36:21 +0530</pubDate>
+      
+      <guid>https://123vivekr.github.io/posts/2020-08-29-pitivi-gsoc-work-product/</guid>
+      <description>This post is a summary of the work that has been completed during the GSoC 2020 period for my project, Object Tracking. The project consisted of implementing an Object Tracking UI in Pitivi and the associated tracking functionality in GStreamer.
+cvtracker GStreamer element flatpak: add opencv_contrib
+I began by adding the opencv_contrib module to the opencv installation for the Pitivi development environment. opencv_contrib contains the library with the tracking algorithms.</description>
+    </item>
+    
+  </channel>
+</rss>
