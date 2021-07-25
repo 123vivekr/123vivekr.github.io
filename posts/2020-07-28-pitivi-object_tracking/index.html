@@ -1,0 +1,86 @@
+<!doctype html><html lang=en>
+<head>
+<meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="ie=edge">
+<title>Pitivi: Object Tracking - Vivek's blog</title>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<link rel=icon href=https://123vivekr.github.io/favicon.png>
+<link rel=stylesheet href=/css/style.min.c58e6a651aa0b48ec07b5c7421f11de5a8e3f12c2933fcb900a3ac68d971e7f9.css>
+<meta property="og:title" content="Pitivi: Object Tracking">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://123vivekr.github.io/posts/2020-07-28-pitivi-object_tracking/">
+<meta name=twitter:card content="summary">
+<meta name=twitter:site content="@theroyalkonkani">
+<meta name=twitter:creator content="@theroyalkonkani">
+<link rel=preconnect href=https://fonts.gstatic.com>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel=stylesheet>
+</head>
+<body class="page frame page-blog-single">
+<div id=wrapper class=wrapper>
+<div class=header>
+<a class=header-logo href=https://123vivekr.github.io/>Vivek's blog</a>
+<div class=menu-main>
+<ul>
+<li class=menu-item-about>
+<a href=/pages/about/>About</a>
+</li>
+<li class=menu-item-blog>
+<a href=/posts/>Blog</a>
+</li>
+</ul>
+</div>
+</div>
+<div class=blog>
+<div class=intro>
+<h1>Pitivi: Object Tracking<span class=dot>.</span></h1>
+</div>
+<div class=content>
+<p>I’ve been selected as a student developer at Pitivi for Google Summer of Code 2020.
+My project is to create an object tracking and blurring feature.</p>
+<p>In this post, I introduce a feature in development which allows the user to track an object inside a video clip.</p>
+<h2 id=object-tracking-in-action>Object tracking in action</h2>
+<p>Before diving into the aspects, let’s see it in action.
+<a href=https://youtu.be/XdGxU19F_Hs>YouTube</a></p>
+<p>In the video, the user selects the clip to be used and clicks on the “Track object” button. In the next screen (tracker perspective), the user chooses a frame and selects the object to be tracked using a drag-and-drop motion. The user then sets the tracking algorithm and initiates the tracking. Live tracking is displayed. The tracked object appears on the left pane. The user has the option to delete the tracked object.</p>
+<h2 id=internals>Internals</h2>
+<p>The cvtracker is a plugin from gst-plugins-bad project (which is also a part of my GSoC project). It allows us to track the object by running the clip through a pipeline. The tracking data is available through the bus and buffer metadata.</p>
+<p>The tracking in pitivi is implemented using a pipeline, which runs the clip and feeds it to the cvtracker. We extract the region-of-interest (ROI) data from the buffer.</p>
+<p>An Object Manager class stores all the tracked objects in a clip. Technically, the object data is saved to the asset metadata.
+So every clip that gets generated using the asset has access to all the tracked objects.</p>
+<h2 id=tracking-data>Tracking data</h2>
+<p>For receiving the tracking data from the cvtracker, we use <code>fakesink</code> with the properties: <code>fakesink name=sink signal-handoffs=TRUE</code>.</p>
+<p>Then we connect the <code>handoff</code> signal to the callback function:</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#ff79c6>def</span> <span style=color:#50fa7b>__tracker_handoff_cb</span>(self, unused_element, buffer, unused_pad, roi_data):
+    video_roi <span style=color:#ff79c6>=</span> GstVideo<span style=color:#ff79c6>.</span>buffer_get_video_region_of_interest_meta_id(buffer, <span style=color:#bd93f9>0</span>)
+    <span style=color:#ff79c6>if</span> video_roi:
+        roi_data[buffer<span style=color:#ff79c6>.</span>pts] <span style=color:#ff79c6>=</span> (video_roi<span style=color:#ff79c6>.</span>x, video_roi<span style=color:#ff79c6>.</span>y, video_roi<span style=color:#ff79c6>.</span>w, video_roi<span style=color:#ff79c6>.</span>h)
+    <span style=color:#ff79c6>else</span>:
+        self<span style=color:#ff79c6>.</span>log(<span style=color:#f1fa8c>&#34;lost tracker at: </span><span style=color:#f1fa8c>%s</span><span style=color:#f1fa8c>&#34;</span> <span style=color:#ff79c6>+</span> <span style=color:#8be9fd;font-style:italic>str</span>(buffer<span style=color:#ff79c6>.</span>pts <span style=color:#ff79c6>/</span> Gst<span style=color:#ff79c6>.</span>SECOND))</code></pre></div>
+<h2 id=further-developments>Further developments</h2>
+<p>There’s more coming!
+Sometimes the tracking can be a little inaccurate, so we’re working on a feature to adjust the tracking of an object. Basically the user can manually adjust the tracking data using a simple and user friendly interface, integrated right into the tracker perspective. More on that in another post.</p>
+</div>
+</div>
+<div class=footer>
+<div class=footer-social>
+<span class="social-icon social-icon-twitter">
+<a href=https://twitter.com/theroyalkonkani title=twitter target=_blank rel=noopener>
+<img src=/images/social/twitter.svg width=24 height=24 alt=twitter>
+</a>
+</span>
+<span class="social-icon social-icon-github">
+<a href=https://github.com/123vivekr title=github target=_blank rel=noopener>
+<img src=/images/social/github.svg width=24 height=24 alt=github>
+</a>
+</span>
+<span class="social-icon social-icon-linkedin">
+<a href=https://www.linkedin.com/in/123vivekr/ title=linkedin target=_blank rel=noopener>
+<img src=/images/social/linkedin.svg width=24 height=24 alt=linkedin>
+</a>
+</span>
+</div>
+</div>
+</div>
+<script type=text/javascript src=/js/bundle.min.e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.js></script>
+</body>
+</html>

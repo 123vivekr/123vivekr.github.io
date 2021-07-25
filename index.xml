@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Home on Vivek's blog</title><link>https://123vivekr.github.io/</link><description>Recent content in Home on Vivek's blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><copyright>This work is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License.</copyright><lastBuildDate>Sat, 29 Aug 2020 10:36:21 +0530</lastBuildDate><atom:link href="https://123vivekr.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>GSoC 2020: Pitivi: Work Product</title><link>https://123vivekr.github.io/posts/2020-08-29-pitivi-gsoc-work-product/</link><pubDate>Sat, 29 Aug 2020 10:36:21 +0530</pubDate><guid>https://123vivekr.github.io/posts/2020-08-29-pitivi-gsoc-work-product/</guid><description>&lt;p>This post is a summary of the work that has been completed during the GSoC 2020 period for my project, Object Tracking. The project consisted of implementing an Object Tracking UI in Pitivi and the associated tracking functionality in GStreamer.&lt;/p>
+&lt;h2 id="cvtracker-gstreamer-element">cvtracker GStreamer element&lt;/h2>
+&lt;p>&lt;a href="https://gitlab.gnome.org/GNOME/pitivi/-/commit/ef2cf45b71b4474b6f2e6bace6bbf8250e2a4d15">flatpak: add opencv_contrib&lt;/a>&lt;/p>
+&lt;p>I began by adding the &lt;code>opencv_contrib&lt;/code> module to the &lt;code>opencv&lt;/code> installation for the Pitivi development environment. &lt;code>opencv_contrib&lt;/code> contains the &lt;a href="https://docs.opencv.org/3.4/d0/d0a/classcv_1_1Tracker.html">library&lt;/a> with the tracking algorithms.&lt;/p>
+&lt;p>&lt;a href="https://gitlab.freedesktop.org/gstreamer/gst-plugins-bad/-/merge_requests/1321">OpenCV Tracker Element for Object Tracking&lt;/a>&lt;/p>
+&lt;p>This merge request introduces the tracking functionality in the gst-plugins-bad package.&lt;/p>
+&lt;p>Previously the &lt;code>opencv&lt;/code> plugin was not being built due to the unavailability of the headers. This &lt;a href="https://gitlab.freedesktop.org/gstreamer/gst-plugins-bad/-/commit/93f7b123f74ae9c276a97b3a21726de94414e5fb?merge_request_iid=1321">patch&lt;/a> fixes the problem, ensuring that the headers are detected for the correct version of opencv and the plugin is built.&lt;/p>
+&lt;p>In the next commit: &lt;a href="https://gitlab.freedesktop.org/gstreamer/gst-plugins-bad/-/commit/d6c7f882d45d5c089565c9b0c2de5d27a17da562?merge_request_iid=1321">opencv: add cvtracker plugin&lt;/a>, I implement the &lt;code>cvtracker&lt;/code> element as part of the &lt;code>opencv&lt;/code> GStreamer plugin and set up the associated tests to ensure correct working. The next commit: &lt;a href="https://gitlab.freedesktop.org/gstreamer/gst-plugins-bad/-/commit/f8fa64083ecb74f22a1d794be54140c62832fdc2?merge_request_iid=1321">meson: add opencv/tracking header requirement&lt;/a> ensures that the tracking library is available before building the plugin.&lt;/p>
+&lt;p>I implemented an additional feature to draw a rectangle over the tracked object. This will come in handy during the testing phase and for live tracking in Pitivi. &lt;a href="https://gitlab.freedesktop.org/gstreamer/gst-plugins-bad/-/commit/e62a646c1a1b1cfe0069636138a15f106f512a3f?merge_request_iid=1321">opencv: cvtracker: add draw property&lt;/a>&lt;/p>
+&lt;p>A brief explanation of the &lt;code>cvtracker&lt;/code> element can be found on my blog post: &lt;a href="https://123vivekr.github.io/2020/08/15/gstreamer-cvtracker.html">cvtracker: OpenCV object tracking plugin&lt;/a>&lt;/p>
+&lt;h2 id="tracker-perspective">Tracker Perspective&lt;/h2>
+&lt;p>With the GStreamer element for tracking completed, the next stage was to implement a user-friendly UI for object tracking. The new Tracker Perspective replaces Pitivi&amp;rsquo;s main window, allowing to select an object on the viewer and track it. If the chosen tracking algorithm fails to track the object correctly, the tracking can be redone from a corrected position.&lt;/p>
+&lt;p>The work done on the Pitivi side currently resides in the &lt;a href="https://gitlab.gnome.org/GNOME/pitivi/-/merge_requests/315/">Merge Request&lt;/a>&lt;/p>
+&lt;p>A brief explanation of tracking objects can be found on my blog post:&lt;/p>
+&lt;p>&lt;a href="https://123vivekr.github.io/2020/07/28/pitivi-object_tracking.html">Pitivi: Object Tracking&lt;/a>&lt;/p>
+&lt;p>As the project progressed, we iterated and made a lot of UI improvements. A demo with the explanation can be found here: &lt;a href="https://123vivekr.github.io/2020/08/16/pitivi-object_track_editing.html">Pitivi: Edit Object Tracking&lt;/a>&lt;/p>
+&lt;!-- raw HTML omitted -->
+&lt;!-- raw HTML omitted -->
+&lt;!-- raw HTML omitted -->
+&lt;h2 id="processing-the-tracked-objects">Processing the tracked objects&lt;/h2>
+&lt;!-- raw HTML omitted -->
+&lt;!-- raw HTML omitted -->
+&lt;!-- raw HTML omitted -->
+&lt;!-- raw HTML omitted -->
+&lt;p>A tracked object can be covered with a colored rectangle on a clip in the timeline. This can be done easily through the &amp;ldquo;Cover Object&amp;rdquo; button in the &amp;ldquo;Clip Properties&amp;rdquo; middle pane shown when a clip is selected.&lt;/p>
+&lt;!-- raw HTML omitted -->
+&lt;p>When an Asset from the Media Library is dragged and dropped on the timeline, it becomes a Clip. A user can create multiple Clips from a single Asset.&lt;/p>
+&lt;p>The tracked objects belong to the Asset. That means if an object is tracked, it’s available to all the Clips backed by the particular Asset. The tracked data is then applied to the properties of an Effect applied to the Clip to obtain the ‘cover rectangle’. Clips can have object effects independent of each other.&lt;/p>
+&lt;p>If a tracked object is deleted from the Assed in the TrackerPerspective, the effects associated with that object will be deleted from all the Clips of that Asset. The below figure shows the situation when ‘Object 2’ is deleted.&lt;/p>
+&lt;!-- raw HTML omitted -->
+&lt;p>&lt;em>&lt;!-- raw HTML omitted -->Technical Note&lt;!-- raw HTML omitted -->&lt;/em>: Taking advantage of &lt;a href="https://lazka.github.io/pgi-docs/#GES-1.0/classes/UriClipAsset.html#GES.UriClipAsset">Assets&lt;/a> being &lt;a href="https://lazka.github.io/pgi-docs/#GES-1.0/classes/MetaContainer.html#GES.MetaContainer">MetaContainers&lt;/a>, we store the Objects&amp;rsquo;s tracking data as a &lt;code>pitivi::tracker_data&lt;/code> metadata item. The tracking data is saved in the Project&amp;rsquo;s &lt;code>.xges&lt;/code> file by GES when the Project is saved.&lt;/p>
+&lt;h2 id="project-status">Project Status&lt;/h2>
+&lt;p>The tracker element and Pitivi UI are complete, as demonstrated in my blog posts. However, there are 2 major bugs in the feature for adding effects to the tracked objects.&lt;/p>
+&lt;p>The first bug is when the user adds the effect for two objects, one with more tracking data than the other, the video track of the clip gets disfigured. This might be due to no available tracking data before the start, which causes the tracking box (red box in this case) to be shown at the bottom-right corner until it receives its first tracking data point. Here’s a small demo of the bug: &lt;a href="https://youtu.be/8Z3iw2nDcqo">YouTube&lt;/a>&lt;/p>
+&lt;p>The fix for this bug is to add a &lt;code>zorder&lt;/code> property to the &lt;code>gescompositor&lt;/code> element of the effect and to set the tracking data point to some random far away point before the beginning of the actual tracked data points.&lt;/p>
+&lt;p>The second bug is when the user adds the effect for an object and then resizes the clip in the viewer, the effect doesn’t follow. Here’s a demo for the bug: &lt;a href="https://youtu.be/nPMFoFACIMs">YouTube&lt;/a>&lt;/p>
+&lt;p>The currently discussed solution is to re-adjust the tracking data every time the user makes a change to the clip video track in the viewer, by resetting the &lt;code>ControlSource&lt;/code>.&lt;/p></description></item><item><title>Pitivi: Edit Object Tracking</title><link>https://123vivekr.github.io/posts/2020-08-16-pitivi-object_track_editing/</link><pubDate>Sun, 16 Aug 2020 13:27:21 +0530</pubDate><guid>https://123vivekr.github.io/posts/2020-08-16-pitivi-object_track_editing/</guid><description>&lt;p>My last post was about adding a feature to track objects.
+But sometimes the algorithm doesn&amp;rsquo;t track the object 100% correct, so in this post, I present to you a new update which lets the user edit the tracked data easily in the Pitivi Tracker Perspective itself.&lt;/p>
+&lt;h2 id="demo">Demo&lt;/h2>
+&lt;p>See the feature in action. &lt;a href="https://youtu.be/T09VJ1ntwI4">YouTube&lt;/a>&lt;/p>
+&lt;p>In the video, the user selects a clip and goes to the Tracker Perspective, by clicking on the &amp;ldquo;Track Object&amp;rdquo; button. Now, the user selects the object to track and chooses the algorithm before tracking. Pitivi tracks the object for the rest of the clip.&lt;/p>
+&lt;p>But wait, the user has accidentally chosen only a portion of the object. They can correct this by seeking to a point in the tracking and selecting the object again, this time, they get it right :)
+After the tracking is completed, the tracking data is updated to accomodate the updated tracking co-ordinates.&lt;/p>
+&lt;p>Similarly, we can correct faults in the tracking.&lt;/p>
+&lt;h2 id="ui-improvements">UI improvements&lt;/h2>
+&lt;!-- raw HTML omitted -->
+&lt;!-- raw HTML omitted -->
+&lt;!-- raw HTML omitted -->
+&lt;!-- raw HTML omitted -->
+&lt;!-- raw HTML omitted -->
+&lt;h2 id="further-developments">Further developments&lt;/h2>
+&lt;p>A feature to add an effect to the tracked objects is in the development stage. The tracked objects will be shown in the &amp;ldquo;Blur Object&amp;rdquo; popover.
+The user can add an effect by clicking on the object. More on that in another post. :)&lt;/p></description></item><item><title>cvtracker: OpenCV object tracking plugin</title><link>https://123vivekr.github.io/posts/2020-07-28-gstreamer-cvtracker/</link><pubDate>Sat, 15 Aug 2020 21:57:21 +0530</pubDate><guid>https://123vivekr.github.io/posts/2020-07-28-gstreamer-cvtracker/</guid><description>&lt;p>I’ve been selected as a student developer at Pitivi for Google Summer of Code 2020.
+My project is to create an object tracking and blurring feature.&lt;/p>
+&lt;p>The tracking is done by passing the video clip through a pipeline which includes a tracker plugin.
+So, the first goal of the project was to implement the tracker plugin in GStreamer.&lt;/p>
+&lt;h2 id="introducing-cvtracker">Introducing cvtracker&lt;/h2>
+&lt;p>This is a GStreamer plugin which allows the user to select an object in the initial frame of a clip by specifying the object’s bounding box (x, y, width and height coordinates). The element then tracks the object during the subsequent frames of the clip.&lt;/p>
+&lt;p>This plugin is in the &lt;a href="https://gstreamer.freedesktop.org/modules/gst-plugins-bad.html">gst-plugins-bad&lt;/a> module. It is currently a &lt;a href="https://gitlab.freedesktop.org/gstreamer/gst-plugins-bad/-/merge_requests/1321">merge request&lt;/a>.&lt;/p>
+&lt;p>The plugin can be used by anyone by just installing the module. An example pipeline is given below.&lt;/p>
+&lt;h2 id="example">Example&lt;/h2>
+&lt;p>A sample pipeline with cvtracker looks like this:&lt;/p>
+&lt;pre>&lt;code>gst-launch-1.0 filesrc location=t.mp4 ! decodebin ! videoconvert ! cvtracker object-initial-x=175 object-initial-y=40 object-initial-width=300 object-initial-height=150 algorithm=1 ! videoconvert ! xvimagesink
+&lt;/code>&lt;/pre>
+&lt;p>Here’s a demo of the pipeline given above: &lt;a href="https://youtu.be/K99qTfsvHnc">YouTube&lt;/a>&lt;/p>
+&lt;h2 id="algorithm">Algorithm&lt;/h2>
+&lt;p>The tracker incorporates &lt;a href="https://docs.opencv.org/3.4/d0/d0a/classcv_1_1Tracker.html">OpenCV’s long term tracker cv::Tracker&lt;/a>.&lt;/p>
+&lt;p>The available tracking algorithms are:&lt;/p>
+&lt;pre>&lt;code>Boosting - the Boosting tracker
+CSRT - the CSRT tracker
+KCF - the KCF (Kernelized Correlation Filter) tracker
+MedianFlow - the Median Flow tracker
+MIL - the MIL tracker
+MOSSE - the MOSSE (Minimum Output Sum of Squared Error) tracker
+TLD - the TLD (Tracking, learning and detection) tracker
+&lt;/code>&lt;/pre>
+&lt;p>You might wonder why we missed the GOTURN algorithm. It was skipped due to the added complexity of setting up the models by the user.&lt;/p>
+&lt;h2 id="properties">Properties&lt;/h2>
+&lt;pre>&lt;code>algorithm - the tracking algorithm to use
+draw-rect - to draw a rectangle around the tracked object
+object-initial-x - object’s initial x coordinate
+object-initial-x - object’s initial y coordinate
+object-initial-height - object’s initial height
+object-initial-width - object’s initial width
+&lt;/code>&lt;/pre>
+&lt;p>The element sends out the tracked object’s bounding box’s x, y, width and height coordinates through the pipeline bus and also through the buffer. If you want live tracking during the playback, you could use the &lt;code>draw-rect&lt;/code> property.&lt;/p></description></item><item><title>Pitivi: Object Tracking</title><link>https://123vivekr.github.io/posts/2020-07-28-pitivi-object_tracking/</link><pubDate>Tue, 28 Jul 2020 21:57:21 +0530</pubDate><guid>https://123vivekr.github.io/posts/2020-07-28-pitivi-object_tracking/</guid><description>&lt;p>I’ve been selected as a student developer at Pitivi for Google Summer of Code 2020.
+My project is to create an object tracking and blurring feature.&lt;/p>
+&lt;p>In this post, I introduce a feature in development which allows the user to track an object inside a video clip.&lt;/p>
+&lt;h2 id="object-tracking-in-action">Object tracking in action&lt;/h2>
+&lt;p>Before diving into the aspects, let’s see it in action.
+&lt;a href="https://youtu.be/XdGxU19F_Hs">YouTube&lt;/a>&lt;/p>
+&lt;p>In the video, the user selects the clip to be used and clicks on the “Track object” button. In the next screen (tracker perspective), the user chooses a frame and selects the object to be tracked using a drag-and-drop motion. The user then sets the tracking algorithm and initiates the tracking. Live tracking is displayed. The tracked object appears on the left pane. The user has the option to delete the tracked object.&lt;/p>
+&lt;h2 id="internals">Internals&lt;/h2>
+&lt;p>The cvtracker is a plugin from gst-plugins-bad project (which is also a part of my GSoC project). It allows us to track the object by running the clip through a pipeline. The tracking data is available through the bus and buffer metadata.&lt;/p>
+&lt;p>The tracking in pitivi is implemented using a pipeline, which runs the clip and feeds it to the cvtracker. We extract the region-of-interest (ROI) data from the buffer.&lt;/p>
+&lt;p>An Object Manager class stores all the tracked objects in a clip. Technically, the object data is saved to the asset metadata.
+So every clip that gets generated using the asset has access to all the tracked objects.&lt;/p>
+&lt;h2 id="tracking-data">Tracking data&lt;/h2>
+&lt;p>For receiving the tracking data from the cvtracker, we use &lt;code>fakesink&lt;/code> with the properties: &lt;code>fakesink name=sink signal-handoffs=TRUE&lt;/code>.&lt;/p>
+&lt;p>Then we connect the &lt;code>handoff&lt;/code> signal to the callback function:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-python" data-lang="python">&lt;span style="color:#ff79c6">def&lt;/span> &lt;span style="color:#50fa7b">__tracker_handoff_cb&lt;/span>(self, unused_element, buffer, unused_pad, roi_data):
+video_roi &lt;span style="color:#ff79c6">=&lt;/span> GstVideo&lt;span style="color:#ff79c6">.&lt;/span>buffer_get_video_region_of_interest_meta_id(buffer, &lt;span style="color:#bd93f9">0&lt;/span>)
+&lt;span style="color:#ff79c6">if&lt;/span> video_roi:
+roi_data[buffer&lt;span style="color:#ff79c6">.&lt;/span>pts] &lt;span style="color:#ff79c6">=&lt;/span> (video_roi&lt;span style="color:#ff79c6">.&lt;/span>x, video_roi&lt;span style="color:#ff79c6">.&lt;/span>y, video_roi&lt;span style="color:#ff79c6">.&lt;/span>w, video_roi&lt;span style="color:#ff79c6">.&lt;/span>h)
+&lt;span style="color:#ff79c6">else&lt;/span>:
+self&lt;span style="color:#ff79c6">.&lt;/span>log(&lt;span style="color:#f1fa8c">&amp;#34;lost tracker at: &lt;/span>&lt;span style="color:#f1fa8c">%s&lt;/span>&lt;span style="color:#f1fa8c">&amp;#34;&lt;/span> &lt;span style="color:#ff79c6">+&lt;/span> &lt;span style="color:#8be9fd;font-style:italic">str&lt;/span>(buffer&lt;span style="color:#ff79c6">.&lt;/span>pts &lt;span style="color:#ff79c6">/&lt;/span> Gst&lt;span style="color:#ff79c6">.&lt;/span>SECOND))&lt;/code>&lt;/pre>&lt;/div>
+&lt;h2 id="further-developments">Further developments&lt;/h2>
+&lt;p>There’s more coming!
+Sometimes the tracking can be a little inaccurate, so we’re working on a feature to adjust the tracking of an object. Basically the user can manually adjust the tracking data using a simple and user friendly interface, integrated right into the tracker perspective. More on that in another post.&lt;/p></description></item><item><title>About me</title><link>https://123vivekr.github.io/pages/about/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://123vivekr.github.io/pages/about/</guid><description>&lt;h1 id="welcome-to-my-blog">&lt;strong>Welcome to my blog.&lt;/strong>&lt;/h1>
+&lt;p>I am &lt;strong>Vivek&lt;/strong> and I build stuff.&lt;/p>
+&lt;p>Primarily a software engineer interested in web, linux, system design
+and machine learning. Here I&amp;rsquo;ll be documenting my software development journey along with a myraid of other
+things which I&amp;rsquo;m deeply interested in.&lt;/p>
+&lt;p>If you find my work interesting, do feel free to contact me on one of my social media platforms.
+I&amp;rsquo;m most active on my twitter.&lt;/p></description></item></channel></rss>
