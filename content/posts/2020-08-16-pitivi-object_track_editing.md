@@ -19,30 +19,11 @@ Similarly, we can correct faults in the tracking.
 
 ## UI improvements
 
-<p align="center">
-    <img src="{{ site.baseurl }}/assets/crosshair.png">
-    <p style="font-size: 15px;" align="center"> Cursor changes to crosshair when hovering on the viewer</p>
-</p>
-
-<p align="center">
-    <img src="{{ site.baseurl }}/assets/pitivi_blur_object.png">
-    <p style="font-size: 15px;" align="center"> Track Object button is inside Blur Object popover</p>
-</p>
-
-<p align="center">
-    <img src="{{ site.baseurl }}/assets/pitivi_edit_start_marker.png">
-    <p style="font-size: 15px;" align="center"> Start position of the tracked object shown as a marker on the seekbar</p>
-</p>
-
-<p align="center">
-    <img src="{{ site.baseurl }}/assets/pitivi_object_track_edit.png">
-    <p style="font-size: 15px;" align="center"> Added an infobar to show instructions</p>
-</p>
-
-<p align="center">
-    <img src="{{ site.baseurl }}/assets/pitivi_object_track_edit2.png">
-    <p style="font-size: 15px;" align="center"> Info bar disappears on choosing an object</p>
-</p>
+![Image](/images/2020-08-16-pitivi-object_track_editing/crosshair.png "Cursor changes to crosshair when hovering on the viewer")
+![Image](/images/2020-08-16-pitivi-object_track_editing/pitivi_blur_object.png "Track Object button is inside Blur Object popover")
+![Image](/images/2020-08-16-pitivi-object_track_editing/pitivi_edit_start_marker.png "Start position of the tracked object shown as a marker on the seekbar")
+![Image](/images/2020-08-16-pitivi-object_track_editing/pitivi_object_track_edit.png "Added an infobar to show instructions")
+![Image](/images/2020-08-16-pitivi-object_track_editing/pitivi_object_track_edit2.png "Info bar disappears on choosing an object")
 
 ## Further developments
 A feature to add an effect to the tracked objects is in the development stage. The tracked objects will be shown in the "Blur Object" popover.

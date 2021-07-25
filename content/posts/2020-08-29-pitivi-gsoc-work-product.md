@@ -36,54 +36,20 @@ A brief explanation of tracking objects can be found on my blog post:
 
 As the project progressed, we iterated and made a lot of UI improvements. A demo with the explanation can be found here: [Pitivi: Edit Object Tracking](https://123vivekr.github.io/2020/08/16/pitivi-object_track_editing.html)
 
-
-<p align="center">
-    <img src="{{ site.baseurl }}/assets/wp-tracker_persp.png">
-    <p style="font-size: 15px;" align="center"> Screenshot of the TrackerPerspective UI</p>
-</p>
-
-
-<p align="center">
-    <img src="{{ site.baseurl }}/assets/wp-selecting_object.gif">
-    <p style="font-size: 15px;" align="center"> Selecting an object from the viewer</p>
-</p>
-
-
-<p align="center">
-    <img src="{{ site.baseurl }}/assets/wp-live_tracking.png">
-    <p style="font-size: 15px;" align="center"> Live tracking in TrackerPerspective</p>
-</p>
+![Image](/images/2020-08-29-pitivi-gsoc-work-product/wp-tracker_persp.png "Screenshot of the TrackerPerspective UI")
+![Image](/images/2020-08-29-pitivi-gsoc-work-product/wp-selecting_object.gif "Selecting an object from the viewer")
+![Image](/images/2020-08-29-pitivi-gsoc-work-product/wp-live_tracking.png "Live tracking in TrackerPerspective")
 
 
 ## Processing the tracked objects
 
-
-<p align="center">
-    <img src="{{ site.baseurl }}/assets/wp-cover_object.png">
-    <p style="font-size: 15px;" align="center">`Cover Object` button to add effects and track objects</p>
-    
-</p>
-
-
-<p align="center">
-    <img src="{{ site.baseurl }}/assets/wp-cover_obj_pop.gif">
-    <p style="font-size: 15px;" align="center">  Cover Object Popover</p>
-</p>
-
-
-<p align="center">
-    <img src="{{ site.baseurl }}/assets/wp-cover_effect.png">
-    <p style="font-size: 15px;" align="center"> Cover effect on clip</p>
-</p>
-
+![Image](/images/2020-08-29-pitivi-gsoc-work-product/wp-cover_object.png "`Cover Object` button to add effects and track objects")
+![Image](/images/2020-08-29-pitivi-gsoc-work-product/wp-cover_obj_pop.gif "Cover Object Popover")
+![Image](/images/2020-08-29-pitivi-gsoc-work-product/wp-cover_effect.png "Cover effect on clip")
 
 A tracked object can be covered with a colored rectangle on a clip in the timeline. This can be done easily through the "Cover Object" button in the "Clip Properties" middle pane shown when a clip is selected.
 
-
-<p align="center">
-    <img src="{{ site.baseurl }}/assets/wp-diag1.png">
-</p>
-
+![Image](/images/2020-08-29-pitivi-gsoc-work-product/wp-diag1.png)
 
 When an Asset from the Media Library is dragged and dropped on the timeline, it becomes a Clip. A user can create multiple Clips from a single Asset.
 
@@ -91,10 +57,7 @@ The tracked objects belong to the Asset. That means if an object is tracked, it�
 
 If a tracked object is deleted from the Assed in the TrackerPerspective, the effects associated with that object will be deleted from all the Clips of that Asset. The below figure shows the situation when ‘Object 2’ is deleted.
 
-
-<p align="center">
-    <img src="{{ site.baseurl }}/assets/wp-diag2.png">
-</p>
+![Image](/images/2020-08-29-pitivi-gsoc-work-product/wp-diag2.png)
 
 _<span style="text-decoration:underline;">Technical Note</span>_: Taking advantage of [Assets](https://lazka.github.io/pgi-docs/#GES-1.0/classes/UriClipAsset.html#GES.UriClipAsset) being [MetaContainers](https://lazka.github.io/pgi-docs/#GES-1.0/classes/MetaContainer.html#GES.MetaContainer), we store the Objects's tracking data as a `pitivi::tracker_data` metadata item. The tracking data is saved in the Project's `.xges` file by GES when the Project is saved. 
 
