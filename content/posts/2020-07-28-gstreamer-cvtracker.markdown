@@ -20,7 +20,9 @@ The plugin can be used by anyone by just installing the module. An example pipel
 ## Example
 A sample pipeline with cvtracker looks like this:
 
-    gst-launch-1.0 filesrc location=t.mp4 ! decodebin ! videoconvert ! cvtracker object-initial-x=175 object-initial-y=40 object-initial-width=300 object-initial-height=150 algorithm=1 ! videoconvert ! xvimagesink
+{{< highlight bash >}}
+gst-launch-1.0 filesrc location=t.mp4 ! decodebin ! videoconvert ! cvtracker object-initial-x=175 object-initial-y=40object-initial-width=300 object-initial-height=150 algorithm=1 ! videoconvert ! xvimagesink
+{{< / highlight >}}
 
 Here’s a demo of the pipeline given above: [YouTube](https://youtu.be/K99qTfsvHnc)
 
@@ -29,22 +31,26 @@ The tracker incorporates [OpenCV’s long term tracker cv::Tracker](https://docs
 
 The available tracking algorithms are:
 
-    Boosting         - the Boosting tracker
-    CSRT             - the CSRT tracker
-    KCF              - the KCF (Kernelized Correlation Filter) tracker
-    MedianFlow       - the Median Flow tracker
-    MIL              - the MIL tracker
-    MOSSE            - the MOSSE (Minimum Output Sum of Squared Error) tracker
-    TLD              - the TLD (Tracking, learning and detection) tracker
+{{< highlight text >}}
+Boosting         - the Boosting tracker
+CSRT             - the CSRT tracker
+KCF              - the KCF (Kernelized Correlation Filter) tracker
+MedianFlow       - the Median Flow tracker
+MIL              - the MIL tracker
+MOSSE            - the MOSSE (Minimum Output Sum of Squared Error) tracker
+TLD              - the TLD (Tracking, learning and detection) tracker
+{{< / highlight >}}
 
 You might wonder why we missed the GOTURN algorithm. It was skipped due to the added complexity of setting up the models by the user.
 
 ## Properties
-    algorithm                   - the tracking algorithm to use
-    draw-rect                   - to draw a rectangle around the tracked object
-    object-initial-x            - object’s initial x coordinate
-    object-initial-x            - object’s initial y coordinate
-    object-initial-height       - object’s initial height
-    object-initial-width        - object’s initial width
+{{< highlight text >}}
+algorithm                   - the tracking algorithm to use
+draw-rect                   - to draw a rectangle around the tracked object
+object-initial-x            - object’s initial x coordinate
+object-initial-x            - object’s initial y coordinate
+object-initial-height       - object’s initial height
+object-initial-width        - object’s initial width
+{{< / highlight >}}
 
 The element sends out the tracked object’s bounding box’s x, y, width and height coordinates through the pipeline bus and also through the buffer. If you want live tracking during the playback, you could use the `draw-rect` property.
