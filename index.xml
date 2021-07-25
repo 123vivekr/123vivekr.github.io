@@ -14,20 +14,45 @@
 &lt;p>A brief explanation of tracking objects can be found on my blog post:&lt;/p>
 &lt;p>&lt;a href="https://123vivekr.github.io/2020/07/28/pitivi-object_tracking.html">Pitivi: Object Tracking&lt;/a>&lt;/p>
 &lt;p>As the project progressed, we iterated and made a lot of UI improvements. A demo with the explanation can be found here: &lt;a href="https://123vivekr.github.io/2020/08/16/pitivi-object_track_editing.html">Pitivi: Edit Object Tracking&lt;/a>&lt;/p>
-&lt;!-- raw HTML omitted -->
-&lt;!-- raw HTML omitted -->
-&lt;!-- raw HTML omitted -->
+&lt;p>
+&lt;figure>
+&lt;img src="https://123vivekr.github.io/images/2020-08-29-pitivi-gsoc-work-product/wp-tracker_persp.png" alt="Image">
+&lt;center>&lt;figcaption>Screenshot of the TrackerPerspective UI&lt;/figcaption>&lt;/center>
+&lt;/figure>
+&lt;figure>
+&lt;img src="https://123vivekr.github.io/images/2020-08-29-pitivi-gsoc-work-product/wp-selecting_object.gif" alt="Image">
+&lt;center>&lt;figcaption>Selecting an object from the viewer&lt;/figcaption>&lt;/center>
+&lt;/figure>
+&lt;figure>
+&lt;img src="https://123vivekr.github.io/images/2020-08-29-pitivi-gsoc-work-product/wp-live_tracking.png" alt="Image">
+&lt;center>&lt;figcaption>Live tracking in TrackerPerspective&lt;/figcaption>&lt;/center>
+&lt;/figure>
+&lt;/p>
 &lt;h2 id="processing-the-tracked-objects">Processing the tracked objects&lt;/h2>
-&lt;!-- raw HTML omitted -->
-&lt;!-- raw HTML omitted -->
-&lt;!-- raw HTML omitted -->
-&lt;!-- raw HTML omitted -->
+&lt;p>
+&lt;figure>
+&lt;img src="https://123vivekr.github.io/images/2020-08-29-pitivi-gsoc-work-product/wp-cover_object.png" alt="Image">
+&lt;center>&lt;figcaption>`Cover Object` button to add effects and track objects&lt;/figcaption>&lt;/center>
+&lt;/figure>
+&lt;figure>
+&lt;img src="https://123vivekr.github.io/images/2020-08-29-pitivi-gsoc-work-product/wp-cover_obj_pop.gif" alt="Image">
+&lt;center>&lt;figcaption>Cover Object Popover&lt;/figcaption>&lt;/center>
+&lt;/figure>
+&lt;figure>
+&lt;img src="https://123vivekr.github.io/images/2020-08-29-pitivi-gsoc-work-product/wp-cover_effect.png" alt="Image">
+&lt;center>&lt;figcaption>Cover effect on clip&lt;/figcaption>&lt;/center>
+&lt;/figure>
+&lt;/p>
 &lt;p>A tracked object can be covered with a colored rectangle on a clip in the timeline. This can be done easily through the &amp;ldquo;Cover Object&amp;rdquo; button in the &amp;ldquo;Clip Properties&amp;rdquo; middle pane shown when a clip is selected.&lt;/p>
-&lt;!-- raw HTML omitted -->
+&lt;p>
+&lt;img src="https://123vivekr.github.io/images/2020-08-29-pitivi-gsoc-work-product/wp-diag1.png" alt="Image">
+&lt;/p>
 &lt;p>When an Asset from the Media Library is dragged and dropped on the timeline, it becomes a Clip. A user can create multiple Clips from a single Asset.&lt;/p>
 &lt;p>The tracked objects belong to the Asset. That means if an object is tracked, it’s available to all the Clips backed by the particular Asset. The tracked data is then applied to the properties of an Effect applied to the Clip to obtain the ‘cover rectangle’. Clips can have object effects independent of each other.&lt;/p>
 &lt;p>If a tracked object is deleted from the Assed in the TrackerPerspective, the effects associated with that object will be deleted from all the Clips of that Asset. The below figure shows the situation when ‘Object 2’ is deleted.&lt;/p>
-&lt;!-- raw HTML omitted -->
+&lt;p>
+&lt;img src="https://123vivekr.github.io/images/2020-08-29-pitivi-gsoc-work-product/wp-diag2.png" alt="Image">
+&lt;/p>
 &lt;p>&lt;em>&lt;!-- raw HTML omitted -->Technical Note&lt;!-- raw HTML omitted -->&lt;/em>: Taking advantage of &lt;a href="https://lazka.github.io/pgi-docs/#GES-1.0/classes/UriClipAsset.html#GES.UriClipAsset">Assets&lt;/a> being &lt;a href="https://lazka.github.io/pgi-docs/#GES-1.0/classes/MetaContainer.html#GES.MetaContainer">MetaContainers&lt;/a>, we store the Objects&amp;rsquo;s tracking data as a &lt;code>pitivi::tracker_data&lt;/code> metadata item. The tracking data is saved in the Project&amp;rsquo;s &lt;code>.xges&lt;/code> file by GES when the Project is saved.&lt;/p>
 &lt;h2 id="project-status">Project Status&lt;/h2>
 &lt;p>The tracker element and Pitivi UI are complete, as demonstrated in my blog posts. However, there are 2 major bugs in the feature for adding effects to the tracked objects.&lt;/p>
@@ -43,11 +68,28 @@ But sometimes the algorithm doesn&amp;rsquo;t track the object 100% correct, so 
 After the tracking is completed, the tracking data is updated to accomodate the updated tracking co-ordinates.&lt;/p>
 &lt;p>Similarly, we can correct faults in the tracking.&lt;/p>
 &lt;h2 id="ui-improvements">UI improvements&lt;/h2>
-&lt;!-- raw HTML omitted -->
-&lt;!-- raw HTML omitted -->
-&lt;!-- raw HTML omitted -->
-&lt;!-- raw HTML omitted -->
-&lt;!-- raw HTML omitted -->
+&lt;p>
+&lt;figure>
+&lt;img src="https://123vivekr.github.io/images/2020-08-16-pitivi-object_track_editing/crosshair.png" alt="Image">
+&lt;center>&lt;figcaption>Cursor changes to crosshair when hovering on the viewer&lt;/figcaption>&lt;/center>
+&lt;/figure>
+&lt;figure>
+&lt;img src="https://123vivekr.github.io/images/2020-08-16-pitivi-object_track_editing/pitivi_blur_object.png" alt="Image">
+&lt;center>&lt;figcaption>Track Object button is inside Blur Object popover&lt;/figcaption>&lt;/center>
+&lt;/figure>
+&lt;figure>
+&lt;img src="https://123vivekr.github.io/images/2020-08-16-pitivi-object_track_editing/pitivi_edit_start_marker.png" alt="Image">
+&lt;center>&lt;figcaption>Start position of the tracked object shown as a marker on the seekbar&lt;/figcaption>&lt;/center>
+&lt;/figure>
+&lt;figure>
+&lt;img src="https://123vivekr.github.io/images/2020-08-16-pitivi-object_track_editing/pitivi_object_track_edit.png" alt="Image">
+&lt;center>&lt;figcaption>Added an infobar to show instructions&lt;/figcaption>&lt;/center>
+&lt;/figure>
+&lt;figure>
+&lt;img src="https://123vivekr.github.io/images/2020-08-16-pitivi-object_track_editing/pitivi_object_track_edit2.png" alt="Image">
+&lt;center>&lt;figcaption>Info bar disappears on choosing an object&lt;/figcaption>&lt;/center>
+&lt;/figure>
+&lt;/p>
 &lt;h2 id="further-developments">Further developments&lt;/h2>
 &lt;p>A feature to add an effect to the tracked objects is in the development stage. The tracked objects will be shown in the &amp;ldquo;Blur Object&amp;rdquo; popover.
 The user can add an effect by clicking on the object. More on that in another post. :)&lt;/p></description></item><item><title>cvtracker: OpenCV object tracking plugin</title><link>https://123vivekr.github.io/posts/2020-07-28-gstreamer-cvtracker/</link><pubDate>Sat, 15 Aug 2020 21:57:21 +0530</pubDate><guid>https://123vivekr.github.io/posts/2020-07-28-gstreamer-cvtracker/</guid><description>&lt;p>I’ve been selected as a student developer at Pitivi for Google Summer of Code 2020.
