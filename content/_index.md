@@ -3,7 +3,7 @@ title: Home
 ---
 # Creativity is not a talent. It's a way of operating.
 
-Things seem to be in place only when you look back on them, as Steeve Jobs explained.
+Things seem to be in place only when you look back on them, as Steve Jobs explained.
 
 It's the act of consistently trying out stuff and failing, that ultimately leads to fruitful learning
 and satisfaction, speaking from experience.
