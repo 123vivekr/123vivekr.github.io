@@ -60,29 +60,26 @@ So, the first goal of the project was to implement the tracker plugin in GStream
 &lt;p>The plugin can be used by anyone by just installing the module. An example pipeline is given below.&lt;/p>
 &lt;h2 id="example">Example&lt;/h2>
 &lt;p>A sample pipeline with cvtracker looks like this:&lt;/p>
-&lt;pre>&lt;code>gst-launch-1.0 filesrc location=t.mp4 ! decodebin ! videoconvert ! cvtracker object-initial-x=175 object-initial-y=40 object-initial-width=300 object-initial-height=150 algorithm=1 ! videoconvert ! xvimagesink
-&lt;/code>&lt;/pre>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">gst-launch-1.0 filesrc &lt;span style="color:#8be9fd;font-style:italic">location&lt;/span>&lt;span style="color:#ff79c6">=&lt;/span>t.mp4 ! decodebin ! videoconvert ! cvtracker object-initial-x&lt;span style="color:#ff79c6">=&lt;/span>&lt;span style="color:#bd93f9">175&lt;/span> object-initial-y&lt;span style="color:#ff79c6">=&lt;/span>40object-initial-width&lt;span style="color:#ff79c6">=&lt;/span>&lt;span style="color:#bd93f9">300&lt;/span> object-initial-height&lt;span style="color:#ff79c6">=&lt;/span>&lt;span style="color:#bd93f9">150&lt;/span> &lt;span style="color:#8be9fd;font-style:italic">algorithm&lt;/span>&lt;span style="color:#ff79c6">=&lt;/span>&lt;span style="color:#bd93f9">1&lt;/span> ! videoconvert ! xvimagesink&lt;/code>&lt;/pre>&lt;/div>
 &lt;p>Here’s a demo of the pipeline given above: &lt;a href="https://youtu.be/K99qTfsvHnc">YouTube&lt;/a>&lt;/p>
 &lt;h2 id="algorithm">Algorithm&lt;/h2>
 &lt;p>The tracker incorporates &lt;a href="https://docs.opencv.org/3.4/d0/d0a/classcv_1_1Tracker.html">OpenCV’s long term tracker cv::Tracker&lt;/a>.&lt;/p>
 &lt;p>The available tracking algorithms are:&lt;/p>
-&lt;pre>&lt;code>Boosting - the Boosting tracker
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">Boosting - the Boosting tracker
 CSRT - the CSRT tracker
 KCF - the KCF (Kernelized Correlation Filter) tracker
 MedianFlow - the Median Flow tracker
 MIL - the MIL tracker
 MOSSE - the MOSSE (Minimum Output Sum of Squared Error) tracker
-TLD - the TLD (Tracking, learning and detection) tracker
-&lt;/code>&lt;/pre>
+TLD - the TLD (Tracking, learning and detection) tracker&lt;/code>&lt;/pre>&lt;/div>
 &lt;p>You might wonder why we missed the GOTURN algorithm. It was skipped due to the added complexity of setting up the models by the user.&lt;/p>
 &lt;h2 id="properties">Properties&lt;/h2>
-&lt;pre>&lt;code>algorithm - the tracking algorithm to use
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">algorithm - the tracking algorithm to use
 draw-rect - to draw a rectangle around the tracked object
 object-initial-x - object’s initial x coordinate
 object-initial-x - object’s initial y coordinate
 object-initial-height - object’s initial height
-object-initial-width - object’s initial width
-&lt;/code>&lt;/pre>
+object-initial-width - object’s initial width&lt;/code>&lt;/pre>&lt;/div>
 &lt;p>The element sends out the tracked object’s bounding box’s x, y, width and height coordinates through the pipeline bus and also through the buffer. If you want live tracking during the playback, you could use the &lt;code>draw-rect&lt;/code> property.&lt;/p></description></item><item><title>Pitivi: Object Tracking</title><link>https://123vivekr.github.io/posts/2020-07-28-pitivi-object_tracking/</link><pubDate>Tue, 28 Jul 2020 21:57:21 +0530</pubDate><guid>https://123vivekr.github.io/posts/2020-07-28-pitivi-object_tracking/</guid><description>&lt;p>I’ve been selected as a student developer at Pitivi for Google Summer of Code 2020.
 My project is to create an object tracking and blurring feature.&lt;/p>
 &lt;p>In this post, I introduce a feature in development which allows the user to track an object inside a video clip.&lt;/p>

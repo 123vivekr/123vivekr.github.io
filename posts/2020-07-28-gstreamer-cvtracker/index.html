@@ -45,29 +45,26 @@ So, the first goal of the project was to implement the tracker plugin in GStream
 <p>The plugin can be used by anyone by just installing the module. An example pipeline is given below.</p>
 <h2 id=example>Example</h2>
 <p>A sample pipeline with cvtracker looks like this:</p>
-<pre><code>gst-launch-1.0 filesrc location=t.mp4 ! decodebin ! videoconvert ! cvtracker object-initial-x=175 object-initial-y=40 object-initial-width=300 object-initial-height=150 algorithm=1 ! videoconvert ! xvimagesink
-</code></pre>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>gst-launch-1.0 filesrc <span style=color:#8be9fd;font-style:italic>location</span><span style=color:#ff79c6>=</span>t.mp4 ! decodebin ! videoconvert ! cvtracker object-initial-x<span style=color:#ff79c6>=</span><span style=color:#bd93f9>175</span> object-initial-y<span style=color:#ff79c6>=</span>40object-initial-width<span style=color:#ff79c6>=</span><span style=color:#bd93f9>300</span> object-initial-height<span style=color:#ff79c6>=</span><span style=color:#bd93f9>150</span> <span style=color:#8be9fd;font-style:italic>algorithm</span><span style=color:#ff79c6>=</span><span style=color:#bd93f9>1</span> ! videoconvert ! xvimagesink</code></pre></div>
 <p>Here’s a demo of the pipeline given above: <a href=https://youtu.be/K99qTfsvHnc>YouTube</a></p>
 <h2 id=algorithm>Algorithm</h2>
 <p>The tracker incorporates <a href=https://docs.opencv.org/3.4/d0/d0a/classcv_1_1Tracker.html>OpenCV’s long term tracker cv::Tracker</a>.</p>
 <p>The available tracking algorithms are:</p>
-<pre><code>Boosting         - the Boosting tracker
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-text data-lang=text>Boosting         - the Boosting tracker
 CSRT             - the CSRT tracker
 KCF              - the KCF (Kernelized Correlation Filter) tracker
 MedianFlow       - the Median Flow tracker
 MIL              - the MIL tracker
 MOSSE            - the MOSSE (Minimum Output Sum of Squared Error) tracker
-TLD              - the TLD (Tracking, learning and detection) tracker
-</code></pre>
+TLD              - the TLD (Tracking, learning and detection) tracker</code></pre></div>
 <p>You might wonder why we missed the GOTURN algorithm. It was skipped due to the added complexity of setting up the models by the user.</p>
 <h2 id=properties>Properties</h2>
-<pre><code>algorithm                   - the tracking algorithm to use
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-text data-lang=text>algorithm                   - the tracking algorithm to use
 draw-rect                   - to draw a rectangle around the tracked object
 object-initial-x            - object’s initial x coordinate
 object-initial-x            - object’s initial y coordinate
 object-initial-height       - object’s initial height
-object-initial-width        - object’s initial width
-</code></pre>
+object-initial-width        - object’s initial width</code></pre></div>
 <p>The element sends out the tracked object’s bounding box’s x, y, width and height coordinates through the pipeline bus and also through the buffer. If you want live tracking during the playback, you could use the <code>draw-rect</code> property.</p>
 </div>
 </div>
