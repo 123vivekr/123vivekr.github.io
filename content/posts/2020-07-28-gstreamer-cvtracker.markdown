@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "cvtracker: OpenCV object tracking plugin"
+title:  "cvtracker: An object tracking plugin for GStreamer"
 date:   2020-08-15 21:57:21 +0530
 tags: [gstreamer,gsoc]
 ---

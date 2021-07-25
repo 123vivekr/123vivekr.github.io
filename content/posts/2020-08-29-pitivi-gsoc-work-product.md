@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "GSoC 2020: Pitivi: Work Product"
+title:  "GSoC 2020: A summary"
 date:   2020-08-29 10:36:21 +0530
 tags: [gsoc,pitivi]
 ---

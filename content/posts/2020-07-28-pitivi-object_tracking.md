@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Pitivi: Object Tracking"
+title:  "Pitivi can now track objects"
 date:   2020-07-28 21:57:21 +0530
 tags: [pitivi,gsoc]
 ---

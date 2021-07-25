@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Pitivi: Edit Object Tracking"
+title:  "Tracking adjustments in Pitivi"
 date:   2020-08-16 13:27:21 +0530
 tags: [pitivi,gsoc]
 ---
