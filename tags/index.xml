@@ -1,1 +1,47 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Tags on Vivek's blog</title><link>https://123vivekr.github.io/tags/</link><description>Recent content in Tags on Vivek's blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><copyright>This work is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License.</copyright><lastBuildDate>Tue, 08 Feb 2022 20:57:21 +0530</lastBuildDate><atom:link href="https://123vivekr.github.io/tags/index.xml" rel="self" type="application/rss+xml"/></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Tags on Vivek&#39;s blog</title>
+    <link>https://123vivekr.github.io/tags/</link>
+    <description>Recent content in Tags on Vivek&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 08 Feb 2022 20:57:21 +0530</lastBuildDate><atom:link href="https://123vivekr.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>rust</title>
+      <link>https://123vivekr.github.io/tags/rust/</link>
+      <pubDate>Tue, 08 Feb 2022 20:57:21 +0530</pubDate>
+      
+      <guid>https://123vivekr.github.io/tags/rust/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>gsoc</title>
+      <link>https://123vivekr.github.io/tags/gsoc/</link>
+      <pubDate>Sat, 29 Aug 2020 10:36:21 +0530</pubDate>
+      
+      <guid>https://123vivekr.github.io/tags/gsoc/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>pitivi</title>
+      <link>https://123vivekr.github.io/tags/pitivi/</link>
+      <pubDate>Sat, 29 Aug 2020 10:36:21 +0530</pubDate>
+      
+      <guid>https://123vivekr.github.io/tags/pitivi/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>gstreamer</title>
+      <link>https://123vivekr.github.io/tags/gstreamer/</link>
+      <pubDate>Sat, 15 Aug 2020 21:57:21 +0530</pubDate>
+      
+      <guid>https://123vivekr.github.io/tags/gstreamer/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>
