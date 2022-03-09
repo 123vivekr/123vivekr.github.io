@@ -1,0 +1,160 @@
+baseURL: https://123vivekr.github.io/
+languageCode: en-us
+title: Vivek's blog
+theme: "PaperMod"
+
+enableInlineShortcodes: true
+enableRobotsTXT: true
+buildDrafts: false
+buildFuture: false
+buildExpired: false
+enableEmoji: true
+
+minify:
+    disableXML: true
+    # minifyOutput: true
+
+languages:
+    en:
+        languageName: "English"
+        weight: 1
+        menu:
+            main:
+                - name: Search
+                  url: search/
+                  weight: 1
+                - name: Tags
+                  url: tags/
+                  weight: 2
+                - name: About
+                  url: about/
+                  weight: 3
+                  params:
+                    ShowToc: false
+
+outputs:
+    home:
+        - HTML
+        - RSS
+        - JSON
+
+params:
+    env: production # to enable google analytics, opengraph, twitter-cards and schema.
+    description: "Vivek's blog"
+    # author: Vivek R
+
+    defaultTheme: auto
+    # disableThemeToggle: true
+    ShowShareButtons: true
+    ShowReadingTime: true
+    # disableSpecial1stPost: true
+    displayFullLangName: true
+    ShowPostNavLinks: true
+    ShowBreadCrumbs: true
+    ShowCodeCopyButtons: true
+    ShowToc: true
+    # comments: true
+
+    profileMode:
+        enabled: false
+        # title: Welcome to my blog!
+        # imageUrl: "#"
+        # imageTitle: my image
+        # imageWidth: 120
+        # imageHeight: 120
+        # buttons:
+            # - name: Archives
+              # url: archives
+            # - name: Tags
+              # url: tags
+
+    homeInfoParams:
+        title: | 
+          - Creativity is not a talent but a way of operating.
+        Content: |
+          - **Experiments lead to innovation**. This blog is just that. 
+          An experiment, a trial of sorts, to document, to express and to exhibit the experience and learnings along my journey. 
+          - Feel free to go though them and leave feedback. You are most welcome.
+    socialIcons:
+        - name: github
+          url: "https://github.com/123vivekr"
+        - name: twitter
+          url: "https://twitter.com/theroyalkonkani"
+        - name: linkedin
+          url: "https://www.linkedin.com/in/123vivekr/"
+
+    editPost:
+        URL: "https://github.com/123vivekr/123vivekr.github.io/tree/main/content"
+        Text: "Suggest Changes" # edit text
+        appendFilePath: true # to append file path to Edit link
+
+    label:
+        text: "Vivek's blog"
+        icon: favicon.png
+        iconHeight: 25
+
+    # analytics:
+    #     google:
+    #         SiteVerificationTag: "XYZabc"
+
+    assets:
+        favicon: "/favicon.png"
+    #     favicon16x16: "<link / abs url>"
+    #     favicon32x32: "<link / abs url>"
+    #     apple_touch_icon: "<link / abs url>"
+    #     safari_pinned_tab: "<link / abs url>"
+
+    # cover:
+    #     hidden: true # hide everywhere but not in structured data
+    #     hiddenInList: true # hide on list pages and home
+    #     hiddenInSingle: true # hide on single page
+
+    # fuseOpts:
+    #     isCaseSensitive: false
+    #     shouldSort: true
+    #     location: 0
+    #     distance: 1000
+    #     threshold: 0.4
+    #     minMatchCharLength: 0
+    #     keys: ["title", "permalink", "summary", "content"]
+
+taxonomies:
+    # category: categories
+    tag: tags
+    series: series
+
+markup:
+    goldmark:
+        renderer:
+            unsafe: true
+#     highlight:
+#         # anchorLineNos: true
+#         codeFences: true
+#         guessSyntax: true
+#         lineNos: true
+#         # noClasses: false
+#         style: monokai
+
+privacy:
+    vimeo:
+        disabled: false
+        simple: true
+
+    twitter:
+        disabled: false
+        enableDNT: true
+        simple: true
+
+    instagram:
+        disabled: false
+        simple: true
+
+    youtube:
+        disabled: false
+        privacyEnhanced: true
+
+services:
+    instagram:
+        disableInlineCSS: true
+    twitter:
+        disableInlineCSS: true

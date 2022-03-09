@@ -1,12 +1,10 @@
 ---
-title: 'About me'
+title: 'Welcome to my blog!'
 image: images/about.png
-menu:
-  main:
-    name: "About"
+ShowToc: false
 ---
 
-# **Welcome to my blog.**
+
 
 I am **Vivek** and I build stuff. 
 
@@ -15,4 +13,4 @@ and machine learning. Here I'll be documenting my software development journey a
 things which I'm deeply interested in.
 
 If you find my work interesting, do feel free to contact me on one of my social media platforms.
-I'm most active on my twitter.
+I'm most active on my [twitter](https://twitter.com/theroyalkonkani).

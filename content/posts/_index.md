@@ -1,7 +1,5 @@
 ---
-title: 'Blog'
-date: 2019-02-24
-menu:
-  main:
-    name: "Blog"
+title: Blog
+summary: Contains posts from my blog
+description: Contains posts from my blog
 ---
