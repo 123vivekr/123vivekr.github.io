@@ -2,19 +2,25 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://123vivekr.github.io/tags/academic/</loc>
+    <lastmod>2022-09-18T12:55:00+05:30</lastmod>
+  </url><url>
     <loc>https://123vivekr.github.io/posts/</loc>
-    <lastmod>2022-02-08T20:57:21+05:30</lastmod>
+    <lastmod>2022-09-18T12:55:00+05:30</lastmod>
+  </url><url>
+    <loc>https://123vivekr.github.io/posts/2022-09-18-on-reading-academic-papers/</loc>
+    <lastmod>2022-09-18T12:55:00+05:30</lastmod>
+  </url><url>
+    <loc>https://123vivekr.github.io/tags/</loc>
+    <lastmod>2022-09-18T12:55:00+05:30</lastmod>
+  </url><url>
+    <loc>https://123vivekr.github.io/</loc>
+    <lastmod>2022-09-18T12:55:00+05:30</lastmod>
   </url><url>
     <loc>https://123vivekr.github.io/tags/rust/</loc>
     <lastmod>2022-02-08T20:57:21+05:30</lastmod>
   </url><url>
     <loc>https://123vivekr.github.io/posts/2022-02-08-rust-first_impressions/</loc>
-    <lastmod>2022-02-08T20:57:21+05:30</lastmod>
-  </url><url>
-    <loc>https://123vivekr.github.io/tags/</loc>
-    <lastmod>2022-02-08T20:57:21+05:30</lastmod>
-  </url><url>
-    <loc>https://123vivekr.github.io/</loc>
     <lastmod>2022-02-08T20:57:21+05:30</lastmod>
   </url><url>
     <loc>https://123vivekr.github.io/tags/gsoc/</loc>
