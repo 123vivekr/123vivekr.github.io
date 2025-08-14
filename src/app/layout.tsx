@@ -17,6 +17,9 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Vivek R | 123vivekr",
   description: "Vivek's home on the internet",
+  icons: {
+    icon: "/favicon.png",
+  },
 };
 
 export default function RootLayout({
