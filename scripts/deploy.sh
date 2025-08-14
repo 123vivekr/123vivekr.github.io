@@ -14,7 +14,7 @@ set -euo pipefail
 #   DEPLOY_BRANCH   Branch name to publish to (default: deploy)
 
 MODE=${1:-branch}
-DEPLOY_BRANCH=${DEPLOY_BRANCH:-deploy}
+DEPLOY_BRANCH=${DEPLOY_BRANCH:-gh-pages}
 
 ROOT_DIR=$(git rev-parse --show-toplevel)
 OUT_DIR="$ROOT_DIR/out"
@@ -116,5 +116,3 @@ fi
 
 echo "Unknown mode: $MODE (expected 'branch' or 'docs')" >&2
 exit 1
-
-
