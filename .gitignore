@@ -1,1 +1,49 @@
+# ---- Node / Next.js ----
+node_modules/
+.next/
+out/
+dist/
+coverage/
+.turbo/
+.vercel/
+.eslintcache
+*.tsbuildinfo
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Bun
+bun.lockb
+
+# Package managers cache
+.npm/
+.pnpm-store/
+
+# Type checker / build caches
+.cache/
+
+# ---- Environment files ----
+.env
+.env.*
+!.env.example
+
+# ---- Editors / IDEs ----
+.idea/
+.vscode/
+
+# ---- OS-specific ----
+.DS_Store
+Thumbs.db
+
+# ---- Hugo (cache & locks) ----
+resources/_gen/
+.hugo_build.lock
+
+# NOTE: We intentionally do NOT ignore `public/` because this repo uses it for app assets
+# If you build Hugo to `public/`, deploy that output from a separate branch, not `main`.
 .hugo_build.lock
