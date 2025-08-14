@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { blogPosts, photos, projects } from "@/lib/data";
+import { blogPosts, projects } from "@/lib/data";
 
 export default function Home() {
   return (
@@ -77,19 +77,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="space-y-3">
-        <div className="flex items-baseline justify-between">
-          <h2 className="text-xl font-semibold tracking-tight">Media</h2>
-          <Link href="/media" className="text-sm">View all →</Link>
-        </div>
-        <div className="grid gap-3 sm:grid-cols-3">
-          {photos.slice(0, 3).map((ph, i) => (
-            <div key={i} className="overflow-hidden rounded-lg border border-accent/30">
-              <img src={ph.src} alt={ph.alt} className="w-full h-40 object-cover" />
-            </div>
-          ))}
-        </div>
-      </section>
+      
     </div>
   );
 }
