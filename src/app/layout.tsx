@@ -38,7 +38,6 @@ export default function RootLayout({
               </Link>
               <Link href="/blog" className="hover:underline">Blog</Link>
               <Link href="/projects" className="hover:underline">Projects</Link>
-              <Link href="/media" className="hover:underline">Media</Link>
               <Link href="/contact" className="hover:underline">Contact</Link>
             </div>
           </nav>
